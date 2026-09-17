@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-doom
+  labels:
+    app: {{ .Release.Name }}-doom
+    chart: {{ .Chart.Name }}-{{ .Chart.Version }}
+    version: {{ .Values.appVersion | quote }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-doom
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-doom
+        version: {{ .Values.appVersion | quote }}
+    spec:
+      containers:
+        - name: doom
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          env:
+            {{- range .Values.env }}
+            - name: {{ .name }}
+              value: {{ .value | quote }}
+            {{- end }}
+          ports:
+            - containerPort: {{ .Values.containerPort }}

@@ -1,0 +1,15 @@
+appVersion: "2.0"
+
+image:
+  repository: deewhy/pacman
+  tag: "latest"
+  pullPolicy: IfNotPresent
+
+replicaCount: 2
+
+containerPort: 3010
+
+service:
+  type: ClusterIP
+  port: 3010
+  targetPort: 3010

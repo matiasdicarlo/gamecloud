@@ -1,0 +1,21 @@
+appVersion: "2.0"
+
+image:
+  repository: kasmweb/doom
+  tag: "1.18.0"
+  pullPolicy: IfNotPresent
+
+replicaCount: 2
+
+containerPort: 6901
+
+env:
+  - name: VNC_PW
+    value: "password"
+  - name: APP_VERSION
+    value: "2.0"
+
+service:
+  type: ClusterIP
+  port: 6901
+  targetPort: 6901
