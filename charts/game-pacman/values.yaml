@@ -1,15 +1,15 @@
 appVersion: "2.0"
 
 image:
-  repository: deewhy/pacman
+  repository: fhdoai/sose-pacman-frontend
   tag: "latest"
   pullPolicy: IfNotPresent
 
 replicaCount: 2
 
-containerPort: 3010
+containerPort: 80
 
 service:
   type: ClusterIP
-  port: 3010
-  targetPort: 3010
+  port: 80
+  targetPort: 80
